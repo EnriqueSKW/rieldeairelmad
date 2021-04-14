@@ -15,6 +15,7 @@ public class fuerza : MonoBehaviour
     public Boolean goreversa = false;
     public float nextActionTime = 1.5f;
     public float period = 0.2f;
+    public Boolean detenercoche = false;
 
 
     // Update is called once per frame
@@ -36,22 +37,36 @@ public class fuerza : MonoBehaviour
     }
 
     public void iniciargame()
-    {
-        Cubo.GetComponent<Rigidbody>().velocity = new Vector3(5.8f, 0, 0);
+    { 
         goreversa = true;
+        Cubo.GetComponent<Rigidbody>().velocity = new Vector3(190.8f, 0, 0);
+      
     }
 
     public void restart()
     {
-        SceneManager.LoadScene("asd");
+        SceneManager.LoadScene("rielaire");
+       
     }
 
-    void OnTriggerEnter(Collider collider)
+
+     private void OnTriggerEnter(Collider collider)
     {
         goreversa = false;
+
+        Debug.Log("entre");
         //Cubo.GetComponent<Rigidbody>().velocity = new Vector3(-2, 0, 0);
         //  Cubo.GetComponent<Rigidbody>().velocity = new Vector3(-Cubo.GetComponent<Rigidbody>().velocity.x,0,0);
-        Cubo.GetComponent<Rigidbody>().velocity = new Vector3(-5.8f, 0, 0);
+        if(detenercoche == false)
+        {
+             Cubo.GetComponent<Rigidbody>().velocity = new Vector3(-190.8f, 0, 0);
+             detenercoche = true;
+        }
+        else
+        {
+              Cubo.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        }
+       
     }
 
 }
